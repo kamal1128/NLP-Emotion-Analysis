@@ -2,7 +2,6 @@
 import streamlit as st
 import pickle
 import json
-import os
 import string
 import nltk
 from nltk.corpus import stopwords
@@ -20,8 +19,6 @@ except LookupError:
 # -----------------------------
 # Paths to model files
 # -----------------------------
-import os
-
 MODEL_PATH = os.path.join("models", "emotion_model.pkl")
 VECT_PATH = os.path.join("models", "vectorizer.pkl")
 LABEL_PATH = os.path.join("models", "label_map.json")
@@ -32,6 +29,28 @@ LABEL_PATH = os.path.join("models", "label_map.json")
 # -----------------------------
 @st.cache_resource
 def load_artifacts():
+    # quick existence checks
+    for p in (MODEL_PATH, VECT_PATH, LABEL_PATH):
+        if not os.path.exists(p):
+            raise FileNotFoundError(f"Required artifact not found: {p}")
+
+    # read first bytes to detect common corruption (text/BOM) that breaks pickle
+    def _head(path, n=4):
+        with open(path, "rb") as fh:
+            return fh.read(n)
+
+    m_head = _head(MODEL_PATH)
+    v_head = _head(VECT_PATH)
+    # UTF-8 BOM begins with EF BB BF
+    if m_head.startswith(b"\xef\xbb\xbf") or v_head.startswith(b"\xef\xbb\xbf"):
+        raise RuntimeError(
+            "One of the .pkl files appears to be saved as text (starts with UTF-8 BOM).\n"
+            f"Model head: {m_head.hex()}  Vectorizer head: {v_head.hex()}\n"
+            "This commonly happens if the files were opened/saved in text mode or were corrupted by git line-ending conversions.\n"
+            "Recreate and save the pickles using binary mode (open(..., 'wb')) and add a .gitattributes entry to keep the files binary."
+        )
+
+    # safe to load
     with open(MODEL_PATH, "rb") as f:
         model = pickle.load(f)
     with open(VECT_PATH, "rb") as f:
