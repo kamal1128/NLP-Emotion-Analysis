@@ -20,9 +20,12 @@ except LookupError:
 # -----------------------------
 # Paths to model files
 # -----------------------------
-MODEL_PATH = r"C:\Users\kamal\OneDrive\Tài liệu\GitHub\NLP-Emotion-Analysis\models\emotion_model.pkl"
-VECT_PATH = r"C:\Users\kamal\OneDrive\Tài liệu\GitHub\NLP-Emotion-Analysis\models\vectorizer.pkl"
-LABEL_PATH = r"C:\Users\kamal\OneDrive\Tài liệu\GitHub\NLP-Emotion-Analysis\models\label_map.json"
+import os
+
+MODEL_PATH = os.path.join("models", "emotion_model.pkl")
+VECT_PATH = os.path.join("models", "vectorizer.pkl")
+LABEL_PATH = os.path.join("models", "label_map.json")
+
 
 # -----------------------------
 # Load model, vectorizer, label map
