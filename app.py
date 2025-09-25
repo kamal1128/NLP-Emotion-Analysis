@@ -38,9 +38,9 @@ def load_artifacts():
         vectorizer = pickle.load(f)
     with open(LABEL_PATH, "r", encoding="utf-8") as f:
         label_map = json.load(f)
-    # Ensure keys are integers for mapping
     label_map = {int(k): v for k, v in label_map.items()}
     return model, vectorizer, label_map
+
 
 model, vectorizer, label_map = load_artifacts()
 
