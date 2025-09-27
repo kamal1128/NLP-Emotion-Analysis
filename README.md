@@ -38,11 +38,8 @@ Access the live demo once deployed on Render: [🔗 Live App on Render](https://
 | I am feeling so happy today!     | joy             | 95%        |
 | I feel so sad and hopeless       | sadness         | 91%        |
 
-![App Screenshot](screenshots/app_screenshot.png)
+![App Screenshot](app_inerface.png)
 
-> Replace `screenshots/app_screenshot.png` with your actual app screenshot.
-
----
 
 ## Folder Structure
 
@@ -158,9 +155,9 @@ Access your deployed app online via the Render URL.
 Links
 GitHub Repository: https://github.com/kamal1128/NLP-Emotion-Analysis
 
-LinkedIn: https://www.linkedin.com/in/<your-linkedin-id>
+LinkedIn: www.linkedin.com/in/sai-kamal-kandukuri-404288305
 
-Live App on Render: https://your-app-name.onrender.com
+Live App on Render: https://nlp-emotion-analysis.onrender.com/
 
 License
 This project is licensed under the MIT License.
