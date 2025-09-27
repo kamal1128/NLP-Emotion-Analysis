@@ -29,7 +29,7 @@ A web-based application that predicts the **emotions of a given text** using Nat
 ---
 
 ## Demo
-Access the live demo once deployed on Render: [🔗 Live App on Render](https://your-app-name.onrender.com)
+Access the live demo once deployed on Render: [🔗 Live App on Render](https://nlp-emotion-analysis.onrender.com/)
 
 **Example:**
 
